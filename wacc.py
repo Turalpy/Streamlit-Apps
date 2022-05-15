@@ -3,7 +3,6 @@ import streamlit as st
 import numpy as np  
 import pandas as pd   
 import ssl
-import lxml
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
@@ -199,15 +198,6 @@ if spread == 0:
 else:
     st.text("->   Currency Spread:"+ " "*(45-len("->   Currency Spread:"))+ spread_print)
     st.text("->   WACC, in local currency:"+ " "*(45-len("->   WACC, in local currency:"))+ wacc_local_print)
-
-
-
-
-
-
-
-
-
 
 
 
