@@ -198,8 +198,8 @@ st.text("->   WACC, in USD:"+ " "*(35-len("->   WACC, in USD:"))+ wacc_usd_print
 if spread == 0:
     pass
 else:
-    st.text("->   Currency Spread:"+ " "*(45-len("->   Currency Spread:"))+ spread_print)
-    st.text("->   WACC, in local currency:"+ " "*(45-len("->   WACC, in local currency:"))+ wacc_local_print)
+    st.text("->   Currency Spread:"+ " "*(35-len("->   Currency Spread:"))+ spread_print)
+    st.text("->   WACC, in local currency:"+ " "*(35-len("->   WACC, in local currency:"))+ wacc_local_print)
 
 
 
