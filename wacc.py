@@ -186,15 +186,15 @@ wacc_local_print = str(round(wacc_local,4)*100)+"%"
 
 
 
-st.text("->   Risk Free Rate:" + " "*(45-len("->   Risk Free Rate:"))+ risk_free_rate_print)
-st.text("->   Equity Risk Premium:"+ " "*(45-len("->   Equity Risk Premium:"))+ erp_print)
-st.text("->   Levered Beta:"+ " "*(45-len("->   Levered Beta:"))+ levered_beta_print)
-st.text("->   Debt/Equity:"+ " "*(45-len("->   Debt/Equity:"))+ debt_equity_print)
-st.text("->   Country Risk Premium:"+ " "*(45-len("->   Country Risk Premium:"))+ crp_print)
-st.text("->   Cost of Equity:"+ " "*(45-len("->   Cost of Equity:"))+ coe_print)
-st.text("->   Corporate Tax Rate:"+ " "*(45-len("->   Corporate Tax Rate:"))+ tax_print)
-st.text("->   Cost of Debt:"+ " "*(45-len("->   Cost of Debt:"))+ cod_print)
-st.text("->   WACC, in USD:"+ " "*(45-len("->   WACC, in USD:"))+ wacc_usd_print)
+st.text("->   Risk Free Rate:" + " "*(35-len("->   Risk Free Rate:"))+ risk_free_rate_print)
+st.text("->   Equity Risk Premium:"+ " "*(35-len("->   Equity Risk Premium:"))+ erp_print)
+st.text("->   Levered Beta:"+ " "*(35-len("->   Levered Beta:"))+ levered_beta_print)
+st.text("->   Debt/Equity:"+ " "*(35-len("->   Debt/Equity:"))+ debt_equity_print)
+st.text("->   Country Risk Premium:"+ " "*(35-len("->   Country Risk Premium:"))+ crp_print)
+st.text("->   Cost of Equity:"+ " "*(35-len("->   Cost of Equity:"))+ coe_print)
+st.text("->   Corporate Tax Rate:"+ " "*(35-len("->   Corporate Tax Rate:"))+ tax_print)
+st.text("->   Cost of Debt:"+ " "*(35-len("->   Cost of Debt:"))+ cod_print)
+st.text("->   WACC, in USD:"+ " "*(35-len("->   WACC, in USD:"))+ wacc_usd_print)
 if spread == 0:
     pass
 else:
