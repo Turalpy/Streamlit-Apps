@@ -1,10 +1,10 @@
 #necessary libraries
+import base64
 import streamlit as st
 import numpy as np  
 import pandas as pd   
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
-import lxml
 
 
 #geomean function
