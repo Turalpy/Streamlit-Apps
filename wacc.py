@@ -1,11 +1,10 @@
 #necessary libraries
-import base64
-import lxml
 import streamlit as st
 import numpy as np  
 import pandas as pd   
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
+import lxml
 
 
 #geomean function
@@ -41,8 +40,11 @@ for i in cod_data[0].tolist():
 years = mature_market_data[0]
 
 #app title
-st.title("Weighted Average Cost of Capital")
-st.markdown("---")
+st.markdown('''
+# Weighted Average Cost of Capital
+- App built by [Tural Mammadov](https://www.linkedin.com/in/tural-mammadov-fmva%C2%AE-017606189). Data sources are given below. _Please, let me know in case of any bug._
+------
+''')
 
 #sidebar
 st.sidebar.subheader('Query parameters')
@@ -164,51 +166,62 @@ def spread(data, country):
 currency_spread = spread(data = spread_data, country = country)
 
 
-st.header("Result:")
 
 
 #printing materials
-risk_free_rate_print = str(round(risk_free_rate,4)*100)+"%"
-erp_print = str(round(mature_risk_premium,4)*100)+"%"
+risk_free_rate_print = str(round(risk_free_rate,4)*100)[:5]+"%"
+erp_print = str(round(mature_risk_premium,4)*100)[:5]+"%"
 levered_beta = unlev_beta*(1+debt_equity_ratio*(1-tax_rate))
-levered_beta_print = str(round(levered_beta,2))
+levered_beta_print = str(round(levered_beta,2))[:5]
 debt_equity_print = str(round(debt_equity_ratio,4)*100)[:5]+"%"
-crp_print = str(round(risk_premium,4)*100)+"%"
+crp_print = str(round(risk_premium,4)*100)[:5]+"%"
 coe = risk_free_rate + round(levered_beta*mature_risk_premium + risk_premium,4)
 coe_print = str(round(coe,4)*100)[:5]+"%"
-tax_print = str(round(tax_rate,4)*100)+"%"
-cod_print = str(round(cod,4)*100)+"%"
+tax_print = str(round(tax_rate,4)*100)[:5]+"%"
+cod_print = str(round(cod,4)*100)[:5]+"%"
 wacc_usd = coe/(1+debt_equity_ratio)+cod*(1-tax_rate)*(debt_equity_ratio/(1+debt_equity_ratio))
-wacc_usd_print = str(round(wacc_usd,4)*100)+"%"
+wacc_usd_print = str(round(wacc_usd,4)*100)[:5]+"%"
 wacc_local = (1+wacc_usd)*(1+currency_spread)-1
-spread_print = str(round(currency_spread,4)*100)+"%"
-wacc_local_print = str(round(wacc_local,4)*100)+"%"
+spread_print = str(round(currency_spread,4)*100)[:5]+"%"
+wacc_local_print = str(round(wacc_local,4)*100)[:5]+"%"
+final_wacc = np.max([wacc_usd,wacc_local])
+final_wacc_print = str(round(final_wacc,4)*100)[:5]+"%"
 
+st.header("Result:")
 
-
-st.text("->   Risk Free Rate:" + " "*(35-len("->   Risk Free Rate:"))+ risk_free_rate_print)
-st.text("->   Equity Risk Premium:"+ " "*(35-len("->   Equity Risk Premium:"))+ erp_print)
-st.text("->   Levered Beta:"+ " "*(35-len("->   Levered Beta:"))+ levered_beta_print)
-st.text("->   Debt/Equity:"+ " "*(35-len("->   Debt/Equity:"))+ debt_equity_print)
-st.text("->   Country Risk Premium:"+ " "*(35-len("->   Country Risk Premium:"))+ crp_print)
-st.text("->   Cost of Equity:"+ " "*(35-len("->   Cost of Equity:"))+ coe_print)
-st.text("->   Corporate Tax Rate:"+ " "*(35-len("->   Corporate Tax Rate:"))+ tax_print)
-st.text("->   Cost of Debt:"+ " "*(35-len("->   Cost of Debt:"))+ cod_print)
-st.text("->   WACC, in USD:"+ " "*(35-len("->   WACC, in USD:"))+ wacc_usd_print)
+st.text("->   Risk Free Rate:" + " "*(45-len("->   Risk Free Rate:"))+ risk_free_rate_print)
+st.text("->   Equity Risk Premium:"+ " "*(45-len("->   Equity Risk Premium:"))+ erp_print)
+st.text("->   Levered Beta:"+ " "*(45-len("->   Levered Beta:"))+ levered_beta_print)
+st.text("->   Debt/Equity:"+ " "*(45-len("->   Debt/Equity:"))+ debt_equity_print)
+st.text("->   Country Risk Premium:"+ " "*(45-len("->   Country Risk Premium:"))+ crp_print)
+st.text("->   Cost of Equity:"+ " "*(45-len("->   Cost of Equity:"))+ coe_print)
+st.text("->   Corporate Tax Rate:"+ " "*(45-len("->   Corporate Tax Rate:"))+ tax_print)
+st.text("->   Cost of Debt:"+ " "*(45-len("->   Cost of Debt:"))+ cod_print)
+st.text("->   WACC, in USD:"+ " "*(45-len("->   WACC, in USD:"))+ wacc_usd_print)
 if spread == 0:
     pass
 else:
-    st.text("->   Currency Spread:"+ " "*(35-len("->   Currency Spread:"))+ spread_print)
-    st.text("->   WACC, in local currency:"+ " "*(35-len("->   WACC, in local currency:"))+ wacc_local_print)
+    st.text("->   Currency Spread:"+ " "*(45-len("->   Currency Spread:"))+ spread_print)
+    st.text("->   WACC, in local currency:"+ " "*(45-len("->   WACC, in local currency:"))+ wacc_local_print)
 
-
-
-
-
-
-
-
-
-
-
-
+st.write("#")
+st.write("#")
+    
+st.markdown("""
+            ### Sources:
+            - **_Risk Free Rate_** - Current US Treasury Rates, [Marketwatch](https://www.marketwatch.com/)
+            - **_Equity Risk Premium_** - [Damodaran](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/histimpl.html)
+            - **_Levered Beta_** - Comes from the equation consisting of Unlevered beta, Debt/Equity ratio and Corporate Tax Rate. Formula source: [Wallstreetprep](https://www.wallstreetprep.com/knowledge/beta-levered-unlevered/#:~:text=Levered%20Beta%20Formula,-Often%20referred%20to&text=When%20calculating%20levered%20beta%2C%20the,as%20Bloomberg%20and%20Yahoo%20Finance.)
+            - **_Unlevered Beta_** - [Damodaran](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html)            
+            - **_Debt/Equity_** - [Damodaran](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html)
+            - **_Corporate Tax Rate_** - [Tradingeconomics](https://tradingeconomics.com/country-list/corporate-tax-rate)
+            - **_Country Risk Premium_** - [Damodaran](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html)
+            - **_Cost of Equity_** - Modified CAPM Calculation. Formula source: [Wallstreetmojo](https://www.wallstreetmojo.com/country-risk-premium/)
+            - **_Cost of Debt_** - [Damodaran](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/wacc.html)
+            - **_Weight of Equity and Debt_** - can be found by using Debt/Equity ratio
+            - **_WACC, in USD_** - it is the WACC for cash flows in USD. Formula source :[ Wallstreetprep](https://www.wallstreetprep.com/knowledge/wacc-weighted-average-cost-capital-formula-real-examples/)
+            - **_Currency Spread_** - Calculated based on the forecasted inflation difference between currencies. Inflation forecast source: [IMF World Economic Outlook Report](https://www.imf.org/en/Publications/WEO/weo-database/2022/April)
+            - **_WACC in local currency_** - For the cash flows in local currencies. Calculated by adding currency spread over the 'WACC in USD'.
+            
+            _For the detailed definitions of the variables, please use [Damodaran](https://pages.stern.nyu.edu/~adamodar/)._
+            """)
