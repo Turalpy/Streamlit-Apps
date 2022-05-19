@@ -189,15 +189,15 @@ final_wacc_print = str(round(final_wacc,4)*100)[:5]+"%"
 
 st.header("Result:")
 
-st.text("->   Risk Free Rate:" + " "*(45-len("->   Risk Free Rate:"))+ risk_free_rate_print)
-st.text("->   Equity Risk Premium:"+ " "*(45-len("->   Equity Risk Premium:"))+ erp_print)
-st.text("->   Levered Beta:"+ " "*(45-len("->   Levered Beta:"))+ levered_beta_print)
-st.text("->   Debt/Equity:"+ " "*(45-len("->   Debt/Equity:"))+ debt_equity_print)
-st.text("->   Country Risk Premium:"+ " "*(45-len("->   Country Risk Premium:"))+ crp_print)
-st.text("->   Cost of Equity:"+ " "*(45-len("->   Cost of Equity:"))+ coe_print)
-st.text("->   Corporate Tax Rate:"+ " "*(45-len("->   Corporate Tax Rate:"))+ tax_print)
-st.text("->   Cost of Debt:"+ " "*(45-len("->   Cost of Debt:"))+ cod_print)
-st.text("->   WACC, in USD:"+ " "*(45-len("->   WACC, in USD:"))+ wacc_usd_print)
+st.text("->   Risk Free Rate:" + " "*(35-len("->   Risk Free Rate:"))+ risk_free_rate_print)
+st.text("->   Equity Risk Premium:"+ " "*(35-len("->   Equity Risk Premium:"))+ erp_print)
+st.text("->   Levered Beta:"+ " "*(35-len("->   Levered Beta:"))+ levered_beta_print)
+st.text("->   Debt/Equity:"+ " "*(35-len("->   Debt/Equity:"))+ debt_equity_print)
+st.text("->   Country Risk Premium:"+ " "*(35-len("->   Country Risk Premium:"))+ crp_print)
+st.text("->   Cost of Equity:"+ " "*(35-len("->   Cost of Equity:"))+ coe_print)
+st.text("->   Corporate Tax Rate:"+ " "*(35-len("->   Corporate Tax Rate:"))+ tax_print)
+st.text("->   Cost of Debt:"+ " "*(35-len("->   Cost of Debt:"))+ cod_print)
+st.text("->   WACC, in USD:"+ " "*(35-len("->   WACC, in USD:"))+ wacc_usd_print)
 if spread == 0:
     pass
 else:
@@ -223,5 +223,5 @@ st.markdown("""
             - **_Currency Spread_** - Calculated based on the forecasted inflation difference between currencies. Inflation forecast source: [IMF World Economic Outlook Report](https://www.imf.org/en/Publications/WEO/weo-database/2022/April)
             - **_WACC in local currency_** - For the cash flows in local currencies. Calculated by adding currency spread over the 'WACC in USD'.
             
-            _For the detailed definitions of the variables, please use [Damodaran](https://pages.stern.nyu.edu/~adamodar/)._
+            _For the detailed definitions of the variables, please use [Damodaran](https://pages.stern.nyu.edu/~adamodar/)_
             """)
