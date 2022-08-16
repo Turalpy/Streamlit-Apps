@@ -14,7 +14,7 @@ if st.button("Download"):
             yt = YouTube(url)
             if option =="Video":
                 st.write("Video is downloading...")
-                yt.streams.get_highest_resolution().download(r'C:/Users/User\Downloads')
+                yt.streams.get_highest_resolution().download(r'C:/Users/User/Downloads')
                 st.write("Video is downloaded")
             if option == "Audio":
                 st.write("Audio is downloading...")
