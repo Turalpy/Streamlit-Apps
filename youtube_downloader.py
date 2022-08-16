@@ -14,11 +14,11 @@ if st.button("Download"):
             yt = YouTube(url)
             if option =="Video":
                 st.write("Video is downloading...")
-                yt.streams.get_highest_resolution().download()
+                yt.streams.get_highest_resolution().download(r'C:/Users/User\Downloads')
                 st.write("Video is downloaded")
             if option == "Audio":
                 st.write("Audio is downloading...")
-                data = yt.streams.get_audio_only().download()
+                yt.streams.get_audio_only().download(r'C:/Users/User/Downloads')
                 st.write("Audio is downloaded")
         except:
             st.write("Error occured")
