@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np 
 import streamlit as st 
 from pytube import YouTube 
+import os
 
 st.header("Download Youtube videos and audios.")
 url = st.text_input("Enter the URL:")
@@ -14,11 +15,11 @@ if st.button("Download"):
             yt = YouTube(url)
             if option =="Video":
                 st.write("Video is downloading...")
-                yt.streams.get_highest_resolution().download(r'C:/Users/User/Downloads')
+                yt.streams.get_highest_resolution().download(os.path.expanduser("~/Downloads"))
                 st.write("Video is downloaded")
             if option == "Audio":
                 st.write("Audio is downloading...")
-                yt.streams.get_audio_only().download(r'C:/Users/User/Downloads')
+                yt.streams.get_audio_only().download(os.path.expanduser("~/Downloads"))
                 st.write("Audio is downloaded")
         except:
             st.write("Error occured")
